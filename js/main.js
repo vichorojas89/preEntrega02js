@@ -1,30 +1,33 @@
 
 //Empezar validacion con funcion
-function validarEdad() {
+function verificadorEdad() {
 
-    //Captura de entradas del usuario
-    const nombre = prompt("Por favor, ingresa tu nombre:");
-    const edad = parseInt(prompt("Por favor, ingresa tu edad:"));
-
-    //Ingresar edad valida
-    if (isNaN(edad) || edad <= 0) {
-        alert("Por favor ingresa una edad valida.");
-        return;
+    let personas = [];
+    let quieresContinuar = true;
+    while (quieresContinuar){
+        let nombre = prompt("FAVOR INGRESA TU NOMBRE: ");
+        let edad = parseInt(prompt("INGRESA TU EDAD: "));
+        
+        //Ingresar edad valida
+        if (isNaN(edad) || edad <= 0) {
+            alert("Por favor ingresa una edad valida.");
+            return;
+        }
+        let persona={
+            "nombre": nombre,
+            "edad": edad 
+        }
+        personas.push(persona)
+        quieresContinuar = confirm("¿Quieres validar otra edad?");
+    
+    
     }
-    //Validar mas personas y edades
-    let quieresContinuar = confirm("¿Quieres validar otra edad?");
-    if (quieresContinuar === true) {
-        validarEdad();
-    } else {
-        alert("Muchas gracias por la informacion");
+    for ( let i = 0; i < personas.length; i++ ) {
+        let edad = personas[i].edad
+        let mensaje = evaluarEdad(edad);
+        alert(`Hola ${personas[i].nombre}, ${mensaje}` )
+
     }
-
-
-    //Procesamiento de la informacion ingresada
-    const resultado = evaluarEdad(edad);
-
-    //Resultado de datos ingresados
-    alert(`Hola ${nombre}, ${resultado}`);
 }
 
 //Evaluar edad
@@ -37,6 +40,5 @@ function evaluarEdad(edad) {
         return "eres adulto mayor.";
     }
 }
-
-validarEdad();
+verificadorEdad();
 
